@@ -21,21 +21,13 @@ namespace BibliotheekApp
 
         private void BoekenOverzicht_Load(object sender, EventArgs e)
         {
-            FillListBox();
-            JoinQuery();
+            FillBoxes();
         }
 
         private void lbBoeken_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (BoekenDBEntities ctx = new BoekenDBEntities())
-            {
-                var geselecteerdBoekTemp = lbBoeken.SelectedItem as Boeken;
-                var geselecteerdBoek = ctx.Boeken.Select(x => x == geselecteerdBoekTemp);
+            Boeken geselecteerdBoek = lbBoeken.SelectedItem as Boeken;
 
-            }
-        }
-        public void JoinQuery()
-        {
             using (BoekenDBEntities ctx = new BoekenDBEntities())
             {
                 var boekenAuteursQuery = ctx.Boeken
@@ -63,20 +55,45 @@ namespace BibliotheekApp
                     b => b.UitgeverId,
                     u => u.Id,
                     (b, u) => new { b, u }).ToList();
+
+                lblTitel.Text = geselecteerdBoek.Titel;
+                lblUitgever.Text = uitgeverQuery.Where(x => x.b.Id == geselecteerdBoek.Id).Select(x => x.u.Naam).FirstOrDefault();
+                lblPaginas.Text = geselecteerdBoek.AantalPaginas.ToString();
+                lblScore.Text = geselecteerdBoek.Score.ToString();
+
+                var genreLijst = boekenGenresQuery.Where(x => x.bg2.b.Id == geselecteerdBoek.Id).Select(x => x.g).ToList();
+                lbGenres.DisplayMember = "Genre";
+                lbGenres.DataSource = null;
+                lbGenres.DataSource = genreLijst;
+
+                var auteurLijst = boekenAuteursQuery.Where(x => x.ba2.b.Id == geselecteerdBoek.Id).Select(x => x.a).ToList();
+                lbAuteurs.DataSource = null;
+                lbAuteurs.DataSource = auteurLijst;
             }
         }
-
-
-        private void FillListBox()
+        private void FillBoxes()
         {
             using (BoekenDBEntities ctx = new BoekenDBEntities())
             {
                 var boekenLijst = ctx.Boeken.Select(x => x).ToList();
-                lbBoeken.DisplayMember = "Titel";
-                lbBoeken.ValueMember = "Id";
                 lbBoeken.DataSource = null;
                 lbBoeken.DataSource = boekenLijst;
+
+                var genreLijst = ctx.Genres.Select(x => x).ToList();
+                cbFilter.DataSource = null;
+                cbFilter.DataSource = genreLijst;
+
+                var auteurLijst = ctx.Auteurs.Select(x => x).ToList();
+                cbFilterParam.DataSource = null;
+                cbFilterParam.DataSource = auteurLijst;
             }
+        }
+
+        private void btnBewerken_Click(object sender, EventArgs e)
+        {
+            Boeken geselecteerdBoek = lbBoeken.SelectedItem as Boeken;
+            Form f = new NieuwBoek(geselecteerdBoek);
+            f.Show();
         }
     }
 }

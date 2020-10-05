@@ -19,14 +19,33 @@ namespace BibliotheekApp
             CenterToScreen();
         }
 
-        private void Hoofdmenu_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnBoekenOverzicht_Click(object sender, EventArgs e)
         {
             Form f = new BoekenOverzicht();
+            f.Show();
+        }
+
+        private void btnNieuwBoek_Click(object sender, EventArgs e)
+        {
+            Form f = new NieuwBoek();
+            f.Show();
+        }
+
+        private void btnNieuweAuteur_Click(object sender, EventArgs e)
+        {
+            Form f = new NieuweAuteur();
+            f.Show();
+        }
+
+        private void btnGenre_Click(object sender, EventArgs e)
+        {
+            Form f = new NieuwGenre();
+            f.Show();
+        }
+
+        private void btnNieuweUitgever_Click(object sender, EventArgs e)
+        {
+            Form f = new NieuweUitgever();
             f.Show();
         }
     }

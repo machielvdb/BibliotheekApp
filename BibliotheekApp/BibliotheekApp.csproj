@@ -55,11 +55,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auteurs.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Boeken.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoekenAuteurs.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BoekenGenres.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BoekenOverzicht.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BoekenOverzicht.Designer.cs">
       <DependentUpon>BoekenOverzicht.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datamodel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datamodel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datamodel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datamodel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Datamodel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Genres.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
     </Compile>
     <Compile Include="Hoofdmenu.cs">
       <SubType>Form</SubType>
@@ -67,28 +97,52 @@
     <Compile Include="Hoofdmenu.Designer.cs">
       <DependentUpon>Hoofdmenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+    <Compile Include="NieuwBoek.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="NieuwBoek.Designer.cs">
+      <DependentUpon>NieuwBoek.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Compile Include="NieuweAuteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NieuweAuteur.Designer.cs">
+      <DependentUpon>NieuweAuteur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NieuweUitgever.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NieuweUitgever.Designer.cs">
+      <DependentUpon>NieuweUitgever.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NieuwGenre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NieuwGenre.Designer.cs">
+      <DependentUpon>NieuwGenre.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Uitgeverijen.cs">
+      <DependentUpon>Datamodel.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BoekenOverzicht.resx">
       <DependentUpon>BoekenOverzicht.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hoofdmenu.resx">
       <DependentUpon>Hoofdmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NieuwBoek.resx">
+      <DependentUpon>NieuwBoek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NieuweAuteur.resx">
+      <DependentUpon>NieuweAuteur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NieuweUitgever.resx">
+      <DependentUpon>NieuweUitgever.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NieuwGenre.resx">
+      <DependentUpon>NieuwGenre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,12 +153,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="Datamodel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Datamodel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Datamodel.edmx.diagram">
+      <DependentUpon>Datamodel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -121,19 +175,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Datamodel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Datamodel.edmx</DependentUpon>
+      <LastGenOutput>Datamodel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Datamodel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Datamodel.edmx</DependentUpon>
+      <LastGenOutput>Datamodel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
